@@ -1,0 +1,42 @@
+{
+	"name": "File Upload Embed",
+
+	"namespace": "UIOWA\\FileUploadEmbed",
+
+	"description": "Allow user uploaded files to appear embedded in data entry forms",
+
+	"documentation": "README.md",
+
+	"authors": [
+		{
+			"name": "Izzy Neuhaus",
+			"email": "isabelle-neuhaus@uiowa.edu",
+			"institution": "University of Iowa Institute for Clinical and Translational Science"
+		}
+	],
+
+	"permissions": [
+		"redcap_module_system_enable",
+		"redcap_data_entry_form"
+	],
+
+	"system-settings": [
+		{
+			"key": "allowed-file-extension",
+			"name": "Allowed file extension for embedding (e.g. pdf, png, txt)",
+			"type": "text",
+			"repeatable": true,
+			"required": true
+		}
+	],
+
+	"project-settings": [
+		{
+			"key": "allowed-upload-field",
+			"name": "File Upload fields to display as embeds",
+			"type": "field-list",
+			"repeatable": true,
+			"required": true
+		}
+	]
+}
