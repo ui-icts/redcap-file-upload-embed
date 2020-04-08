@@ -14,3 +14,5 @@ $docInfo = \Files::getEdocContentsAttributes($_GET['id']);
 // set mime type and file contents
 header('Content-type: ' . $docInfo[0]);
 echo $docInfo[2];
+
+?>

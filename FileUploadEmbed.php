@@ -52,7 +52,7 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
 
                     // exit if file type isn't whitelisted in module config or couldn't lookup mime type
                     if (!in_array($uploadedFileType, $supportedFiletypes) || !$uploadedFileType) {
-                        exit();
+                        $this->exitAfterHook();
                     }
 
                     // generate verification hash
@@ -65,30 +65,31 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
 
             // exit if no valid fields found
             if (!count($data)) {
-                exit();
+                $this->exitAfterHook();
             }
             ?>
             <script>
                 $(document).ready(function() {
                     $.each(<?= json_encode($data) ?>, function(field, url) {
-                        let $uploadTr = $(`[sq_id="${field}"]`);
+                        let $uploadTr = $("[sq_id='" + field + "']");
 
                         // if field appears on page, add embed
                         if ($uploadTr.length) {
                             let embedId = 'fileUploadEmbed_' + field;
 
-                            $uploadTr.after(`<tr id="${embedId}"></tr>`);
+                            $uploadTr.after("<tr id='" + embedId + "'></tr>");
 
-                            $('#' + embedId).html(`
-                            <td colspan="2">
-                                <object id="embeddedFile_${field}" data="${url}" style="width:100%;height:800px"></object>
-                            </td>
-                        `);
+                            $('#' + embedId).html(
+                                "<td colspan='2'>" +
+                                "<object id='embeddedFile_" + field + "' data='" + url + "#toolbar=0&navpanes=0&scrollbar=0" + "' style='width:100%;height:800px'></object>" +
+                                "</td>"
+                            );
                         }
                     });
                 });
             </script>
-            <?
+            <?php
         }
     }
 }
+?>

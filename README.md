@@ -4,7 +4,9 @@
 This module allows File Upload fields to display the uploaded file as an inline embed on a data entry form.
 
 ### Setup
-No system-level configuration is required, but you may want to customize the whitelisted file extensions. By default, the only file types that will display as embedded elements are PDF, JPG, JPEG, and PNG. This module has only been tested extensively with PDFs.
+No system-level configuration is required, but you may want to customize the whitelisted file extensions. By default, the only file types that will display as embedded elements are PDF, JPG, JPEG, and PNG.
+
+This module has only been tested extensively with PDFs, but most file types compatible with the HTML <object> tag should work as well.
 
 Once enabled on a project, you need to define which field(s) can be embedded via the project-level configuration. The selected fields must be the "File Upload" type.
 
