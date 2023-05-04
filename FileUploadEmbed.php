@@ -71,20 +71,31 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
             <script>
                 $(document).ready(function() {
                     $.each(<?= json_encode($data) ?>, function(field, url) {
-                        let $uploadTr = $("[sq_id='" + field + "']");
+                        const splitUrl = url.split("&")
+                        const getIdIndex = splitUrl.findIndex(function(item){
+                            return item.indexOf("id=")!==-1;
+                        });
+                 
+                        const getId = splitUrl[getIdIndex].split("=")[1]
+        
+                        if(getId !== "") {
+                     
+                            let $uploadTr = $("[sq_id='" + field + "']");
 
-                        // if field appears on page, add embed
-                        if ($uploadTr.length) {
-                            let embedId = 'fileUploadEmbed_' + field;
+                            // if field appears on page, add embed
+                            if ($uploadTr.length) {
+                                let embedId = 'fileUploadEmbed_' + field;
 
-                            $uploadTr.after("<tr id='" + embedId + "'></tr>");
+                                $uploadTr.after("<tr id='" + embedId + "'></tr>");
 
-                            $('#' + embedId).html(
-                                "<td colspan='2'>" +
-                                "<object id='embeddedFile_" + field + "' data='" + url + "#toolbar=0&navpanes=0&scrollbar=0" + "' style='width:100%;height:800px'></object>" +
-                                "</td>"
-                            );
+                                $('#' + embedId).html(
+                                    "<td colspan='2'>" +
+                                    "<object id='embeddedFile_" + field + "' data='" + url + "#toolbar=0&navpanes=0&scrollbar=0" + "' style='width:100%;height:800px'></object>" +
+                                    "</td>"
+                                );
+                            }
                         }
+                        
                     });
                 });
             </script>

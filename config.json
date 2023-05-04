@@ -48,5 +48,15 @@
 			"repeatable": true,
 			"required": true
 		}
-	]
+	],
+	"compatibility": {
+		"php-version-min": "",
+		"php-version-max": "",
+		"redcap-version-min": "12.0.4",
+		"redcap-version-max": ""
+	},
+	"framework-version": 9,
+	"versions": {
+		"1.0.3": "Fixed issue where a file upload field without an uploaded file would display a large empty space.  Updated to framework version 9.  Updated minimum redcap version to 12.0.4."
+	}
 }
