@@ -63,14 +63,22 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
                 }
             }
 
+            
+
             // exit if no valid fields found
             if (!count($data)) {
                 $this->exitAfterHook();
             }
+
+            $data = htmlspecialchars(json_encode($data),ENT_QUOTES);
             ?>
             <script>
                 $(document).ready(function() {
-                    $.each(<?= json_encode($data) ?>, function(field, url) {
+                    const data = <?= json_encode($data); ?>;
+                    const dataParsed = JSON.parse(data.replaceAll("&quot;", '"').replaceAll("&amp;", "&"))
+
+                    console.log(dataParsed)
+                    $.each(dataParsed, function(field, url) {
                         const splitUrl = url.split("&")
                         const getIdIndex = splitUrl.findIndex(function(item){
                             return item.indexOf("id=")!==-1;
@@ -85,8 +93,15 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
                             // if field appears on page, add embed
                             if ($uploadTr.length) {
                                 let embedId = 'fileUploadEmbed_' + field;
+                                const fieldLabel = $('div[data-mlm-field="'+field+'"]').text();
 
-                                $uploadTr.after("<tr id='" + embedId + "'></tr>");
+                                const isHidden = $(`#${field}-tr`).hasClass("@HIDDEN")
+                                let newLabel = ""
+                                if(isHidden) {
+                                    newLabel = "<tr><td colspan='2' style='background-color:#F0F0F0'><b>"+fieldLabel+"</b></td></tr>"
+                                }
+                      
+                                $uploadTr.after(newLabel+"<tr id='" + embedId + "'></tr>");
 
                                 $('#' + embedId).html(
                                     "<td colspan='2'>" +

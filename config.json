@@ -1,62 +1,59 @@
 {
-	"name": "File Upload Embed",
+  "name": "File Upload Embed",
 
-	"namespace": "UIOWA\\FileUploadEmbed",
+  "namespace": "UIOWA\\FileUploadEmbed",
 
-	"description": "Allow user uploaded files to appear embedded in data entry forms",
+  "description": "Allow user uploaded files to appear embedded in data entry forms",
 
-	"documentation": "README.md",
+  "documentation": "README.md",
 
-	  "authors": [
-	    {
-	      "name": "Joe Spring",
-	      "email": "redcap@icts.uiowa.edu",
-	      "institution": "University of Iowa Institute for Clinical and Translational Science"
-	    },
-	    {
-	      "name": "Heath Davis",
-	      "email": "redcap@icts.uiowa.edu",
-	      "institution": "University of Iowa Institute for Clinical and Translational Science"
-	    },
-	    {
-	      "name": "Chris Ortman",
-	      "email": "redcap@icts.uiowa.edu",
-	      "institution": "University of Iowa Institute for Clinical and Translational Science"
-	    }
-  	],
+  "authors": [
+    {
+      "name": "Joe Spring",
+      "email": "redcap@icts.uiowa.edu",
+      "institution": "University of Iowa Institute for Clinical and Translational Science"
+    },
+    {
+      "name": "Heath Davis",
+      "email": "redcap@icts.uiowa.edu",
+      "institution": "University of Iowa Institute for Clinical and Translational Science"
+    },
+    {
+      "name": "Chris Ortman",
+      "email": "redcap@icts.uiowa.edu",
+      "institution": "University of Iowa Institute for Clinical and Translational Science"
+    }
+  ],
 
-	"permissions": [
-		"redcap_module_system_enable",
-		"redcap_data_entry_form"
-	],
+  "permissions": ["redcap_module_system_enable", "redcap_data_entry_form"],
 
-	"system-settings": [
-		{
-			"key": "allowed-file-extension",
-			"name": "Allowed file extension for embedding (e.g. pdf, png, txt)",
-			"type": "text",
-			"repeatable": true,
-			"required": true
-		}
-	],
+  "system-settings": [
+    {
+      "key": "allowed-file-extension",
+      "name": "Allowed file extension for embedding (e.g. pdf, png, txt)",
+      "type": "text",
+      "repeatable": true,
+      "required": true
+    }
+  ],
 
-	"project-settings": [
-		{
-			"key": "allowed-upload-field",
-			"name": "File Upload fields to display as embeds",
-			"type": "field-list",
-			"repeatable": true,
-			"required": true
-		}
-	],
-	"compatibility": {
-		"php-version-min": "",
-		"php-version-max": "",
-		"redcap-version-min": "12.0.4",
-		"redcap-version-max": ""
-	},
-	"framework-version": 9,
-	"versions": {
-		"1.0.3": "Fixed issue where a file upload field without an uploaded file would display a large empty space.  Updated to framework version 9.  Updated minimum redcap version to 12.0.4."
-	}
+  "project-settings": [
+    {
+      "key": "allowed-upload-field",
+      "name": "File Upload fields to display as embeds",
+      "type": "field-list",
+      "repeatable": true,
+      "required": true
+    }
+  ],
+  "compatibility": {
+    "php-version-min": "",
+    "php-version-max": "",
+    "redcap-version-min": "12.0.4",
+    "redcap-version-max": ""
+  },
+  "framework-version": 9,
+  "versions": {
+    "1.0.3": "Fixed issue where a file upload field without an uploaded file would display a large empty space.  Added field label above embedded file.  Updated to framework version 9.  Updated minimum redcap version to 12.0.4."
+  }
 }
