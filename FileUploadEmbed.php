@@ -63,28 +63,54 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
                 }
             }
 
+            
+
             // exit if no valid fields found
             if (!count($data)) {
                 $this->exitAfterHook();
             }
+
+            $data = htmlspecialchars(json_encode($data),ENT_QUOTES);
             ?>
             <script>
                 $(document).ready(function() {
-                    $.each(<?= json_encode($data) ?>, function(field, url) {
-                        let $uploadTr = $("[sq_id='" + field + "']");
+                    const data = <?= json_encode($data); ?>;
+                    const dataParsed = JSON.parse(data.replaceAll("&quot;", '"').replaceAll("&amp;", "&"))
 
-                        // if field appears on page, add embed
-                        if ($uploadTr.length) {
-                            let embedId = 'fileUploadEmbed_' + field;
+                    console.log(dataParsed)
+                    $.each(dataParsed, function(field, url) {
+                        const splitUrl = url.split("&")
+                        const getIdIndex = splitUrl.findIndex(function(item){
+                            return item.indexOf("id=")!==-1;
+                        });
+                 
+                        const getId = splitUrl[getIdIndex].split("=")[1]
+        
+                        if(getId !== "") {
+                     
+                            let $uploadTr = $("[sq_id='" + field + "']");
 
-                            $uploadTr.after("<tr id='" + embedId + "'></tr>");
+                            // if field appears on page, add embed
+                            if ($uploadTr.length) {
+                                let embedId = 'fileUploadEmbed_' + field;
+                                const fieldLabel = $('div[data-mlm-field="'+field+'"]').text();
 
-                            $('#' + embedId).html(
-                                "<td colspan='2'>" +
-                                "<object id='embeddedFile_" + field + "' data='" + url + "#toolbar=0&navpanes=0&scrollbar=0" + "' style='width:100%;height:800px'></object>" +
-                                "</td>"
-                            );
+                                const isHidden = $(`#${field}-tr`).hasClass("@HIDDEN")
+                                let newLabel = ""
+                                if(isHidden) {
+                                    newLabel = "<tr><td colspan='2' style='background-color:#F0F0F0'><b>"+fieldLabel+"</b></td></tr>"
+                                }
+                      
+                                $uploadTr.after(newLabel+"<tr id='" + embedId + "'></tr>");
+
+                                $('#' + embedId).html(
+                                    "<td colspan='2'>" +
+                                    "<object id='embeddedFile_" + field + "' data='" + url + "#toolbar=0&navpanes=0&scrollbar=0" + "' style='width:100%;height:800px'></object>" +
+                                    "</td>"
+                                );
+                            }
                         }
+                        
                     });
                 });
             </script>
