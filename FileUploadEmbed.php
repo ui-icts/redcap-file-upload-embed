@@ -63,10 +63,8 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
                 }
             }
 
-            
-
             // exit if no valid fields found
-            if (!count($data)) {
+            if ($data == NULL || !count($data)) {
                 $this->exitAfterHook();
             }
 
@@ -77,7 +75,6 @@ class FileUploadEmbed extends \ExternalModules\AbstractExternalModule {
                     const data = <?= json_encode($data); ?>;
                     const dataParsed = JSON.parse(data.replaceAll("&quot;", '"').replaceAll("&amp;", "&"))
 
-                    console.log(dataParsed)
                     $.each(dataParsed, function(field, url) {
                         const splitUrl = url.split("&")
                         const getIdIndex = splitUrl.findIndex(function(item){
