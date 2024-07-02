@@ -25,8 +25,6 @@
     }
   ],
 
-  "permissions": ["redcap_module_system_enable", "redcap_data_entry_form"],
-
   "system-settings": [
     {
       "key": "allowed-file-extension",
@@ -49,12 +47,13 @@
   "compatibility": {
     "php-version-min": "",
     "php-version-max": "",
-    "redcap-version-min": "12.4.6",
+    "redcap-version-min": "13.7.3",
     "redcap-version-max": ""
   },
-  "framework-version": 10,
+  "framework-version": 14,
   "versions": {
     "1.0.3": "Fixed issue where a file upload field without an uploaded file would display a large empty space.  Added field label above embedded file.  Updated to framework version 9.  Updated minimum redcap version to 12.0.4.",
-    "1.0.4": "Fixed exception when data is null.  Updated to EM version and REDCap minimum version."
+    "1.0.4": "Fixed exception when data is null.  Updated to EM version and REDCap minimum version.",
+    "1.0.5": "Updated to EM version to 14 and REDCap minimum version to 13.7.3.  Removed config.json permissions."
   }
 }
