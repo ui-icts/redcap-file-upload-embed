@@ -12,16 +12,6 @@
       "name": "Joe Spring",
       "email": "redcap@icts.uiowa.edu",
       "institution": "University of Iowa Institute for Clinical and Translational Science"
-    },
-    {
-      "name": "Heath Davis",
-      "email": "redcap@icts.uiowa.edu",
-      "institution": "University of Iowa Institute for Clinical and Translational Science"
-    },
-    {
-      "name": "Chris Ortman",
-      "email": "redcap@icts.uiowa.edu",
-      "institution": "University of Iowa Institute for Clinical and Translational Science"
     }
   ],
 
@@ -47,13 +37,14 @@
   "compatibility": {
     "php-version-min": "",
     "php-version-max": "",
-    "redcap-version-min": "13.7.3",
+    "redcap-version-min": "",
     "redcap-version-max": ""
   },
-  "framework-version": 14,
+  "framework-version": 15,
   "versions": {
     "1.0.3": "Fixed issue where a file upload field without an uploaded file would display a large empty space.  Added field label above embedded file.  Updated to framework version 9.  Updated minimum redcap version to 12.0.4.",
     "1.0.4": "Fixed exception when data is null.  Updated to EM version and REDCap minimum version.",
-    "1.0.5": "Updated to EM version to 14 and REDCap minimum version to 13.7.3.  Removed config.json permissions."
+    "1.0.5": "Updated to EM version to 14 and REDCap minimum version to 13.7.3.  Removed config.json permissions.",
+    "1.0.6": "Updated to EM version to 15.  Removed REDCap minimum version."
   }
 }
